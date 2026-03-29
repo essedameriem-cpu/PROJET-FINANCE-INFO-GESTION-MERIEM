@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compte Rendu — Excel Dashboard Skill — ESSEDA MERIEM</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f0f4f1; color: #1a2e22; line-height: 1.7; }
+
+    .header-card {
+      background: linear-gradient(135deg, #006633, #004d26);
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .header-card img {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      border: 3px solid #D4A017;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .header-card .info .name { color: #D4A017; font-size: 1.5rem; font-weight: 700; }
+    .header-card .info .school { color: rgba(255,255,255,0.85); font-size: 1rem; margin-top: 4px; }
+    .header-card .info .date { color: rgba(255,255,255,0.6); font-size: 0.88rem; margin-top: 2px; font-style: italic; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 36px 24px 60px; }
+
+    .doc-title { text-align: center; margin: 32px 0 8px; }
+    .doc-title h1 { font-size: 1.8rem; color: #006633; }
+    .doc-title h2 { font-size: 1.1rem; color: #5a7a65; font-weight: 400; margin-top: 6px; }
+
+    .author-box {
+      background: #e8f4ec; border-left: 4px solid #D4A017;
+      padding: 12px 20px; border-radius: 6px;
+      margin: 20px 0 32px; font-size: 0.95rem; color: #1a2e22;
+    }
+
+    hr { border: none; border-top: 2px solid #D4A017; margin: 32px 0; }
+
+    .toc { background: #fff; border-radius: 10px; padding: 20px 28px; margin-bottom: 36px; box-shadow: 0 2px 12px rgba(0,102,51,0.08); }
+    .toc h3 { color: #006633; font-size: 1rem; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin: 5px 0; }
+    .toc a { color: #006633; text-decoration: none; font-size: 0.95rem; }
+    .toc a:hover { text-decoration: underline; color: #D4A017; }
+
+    .section { background: #fff; border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,102,51,0.08); }
+    .section h2 { font-size: 1.25rem; color: #fff; background: linear-gradient(90deg, #006633, #008844); padding: 10px 18px; border-radius: 6px; margin: -28px -32px 20px; }
+    .section h3 { font-size: 1.05rem; color: #006633; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 2px solid #d0e4d8; }
+    .section h4 { font-size: 0.95rem; color: #004d26; margin: 16px 0 6px; }
+    .section p { margin: 10px 0; font-size: 0.95rem; }
+
+    table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.88rem; }
+    thead tr { background: #004d26; color: #fff; }
+    thead th { padding: 9px 14px; text-align: left; }
+    tbody tr:nth-child(even) { background: #f5faf7; }
+    tbody tr:hover { background: #e8f4ec; }
+    tbody td { padding: 8px 14px; border-bottom: 1px solid #d0e4d8; }
+
+    pre { background: #1a2e22; color: #a8d8b0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; margin: 14px 0; }
+    code { background: #e8f4ec; color: #006633; padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; }
+    pre code { background: none; color: inherit; padding: 0; }
+
+    ul, ol { padding-left: 22px; margin: 10px 0; }
+    li { margin: 5px 0; font-size: 0.93rem; }
+
+    .blockquote { background: #f0f4f1; border-left: 4px solid #006633; padding: 10px 18px; border-radius: 0 6px 6px 0; margin: 14px 0; color: #1a2e22; font-style: italic; font-size: 0.93rem; }
+
+    .checklist li { list-style: none; padding-left: 4px; }
+    .checklist li::before { content: "☐ "; color: #006633; font-size: 1rem; }
+
+    .footer-card {
+      background: linear-gradient(135deg, #006633, #004d26);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 18px;
+      border-radius: 8px;
+      margin-top: 36px;
+      font-size: 0.88rem;
+    }
+    .footer-card strong { color: #D4A017; }
+  </style>
+</head>
+<body>
+
+<!-- EN-TÊTE -->
+<div class="header-card">
+  <img src="data:image/jpeg;base64,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" alt="ESSEDA MERIEM" />
+  <div class="info">
+    <div class="name">ESSEDA MERIEM</div>
+    <div class="school">Étudiante — ENCG Settat &nbsp;|&nbsp; Université Hassan 1er</div>
+    <div class="date">Analyse et Visualisation de Données — Mars 2026</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="doc-title">
+    <h1>Compte Rendu — Excel Dashboard Skill</h1>
+    <h2>ENCG Settat — Université Hassan 1er</h2>
+  </div>
+
+  <div class="author-box">
+    📝 <strong>Document traité et rédigé par : ESSEDA MERIEM</strong><br>
+    ENCG Settat — Université Hassan 1er &nbsp;|&nbsp; Mars 2026
+  </div>
+
+  <hr>
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc">
+    <h3>📋 Table des Matières</h3>
+    <ol>
+      <li><a href="#s1">Présentation du Skill</a></li>
+      <li><a href="#s2">Principe Général et Livrables</a></li>
+      <li><a href="#s3">Workflow de Génération du Dashboard</a></li>
+      <li><a href="#s4">Sélection des Graphiques et KPI</a></li>
+      <li><a href="#s5">Branding ENCG Settat</a></li>
+      <li><a href="#s6">Gestion des Cas Particuliers</a></li>
+      <li><a href="#s7">Checklist Qualité</a></li>
+      <li><a href="#s8">Exemples de Cas d'Usage</a></li>
+      <li><a href="#s9">Conclusion</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="s1">
+    <h2>1. Présentation du Skill</h2>
+    <p>Le skill <strong>Excel Dashboard</strong> est un outil automatisé conçu pour transformer tout fichier Excel (<code>.xlsx</code> / <code>.xls</code>) en un <strong>dashboard HTML interactif, autonome et téléchargeable</strong>, aux couleurs institutionnelles de l'ENCG Settat.</p>
+
+    <h3>1.1 Identité du Skill</h3>
+    <table>
+      <thead><tr><th>Attribut</th><th>Valeur</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Nom</strong></td><td><code>excel-dashboard</code></td></tr>
+        <tr><td><strong>Couleur primaire</strong></td><td>Vert ENCG <code>#006633</code></td></tr>
+        <tr><td><strong>Couleur secondaire</strong></td><td>Or ENCG <code>#D4A017</code></td></tr>
+        <tr><td><strong>Technologie graphique</strong></td><td>Chart.js 4.x via CDN</td></tr>
+        <tr><td><strong>Format de sortie</strong></td><td>Fichier <code>.html</code> autonome tout-en-un</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.2 Déclencheurs d'Activation</h3>
+    <p>Le skill s'active dès que l'utilisateur mentionne :</p>
+    <ul>
+      <li><code>dashboard</code>, <code>tableau de bord</code>, <code>visualisation de données</code></li>
+      <li><code>visualiser mon Excel</code>, <code>graphiques depuis Excel</code>, <code>analyser mon fichier Excel</code></li>
+      <li><code>KPI depuis Excel</code>, <code>rapport visuel</code></li>
+      <li><code>montre-moi mes données</code>, <code>fais quelque chose de visuel avec ce fichier</code></li>
+      <li>Ou lorsqu'un fichier <code>.xlsx</code> / <code>.xls</code> est uploadé avec une demande visuelle</li>
+    </ul>
+    <div class="blockquote">⚠️ <strong>Règle d'exclusion :</strong> Si le livrable attendu est un fichier Excel modifié, utiliser le skill <code>xlsx</code> à la place.</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <h2>2. Principe Général et Livrables</h2>
+
+    <h3>2.1 Sortie Unique</h3>
+    <p>Le skill produit <strong>un seul fichier</strong> : un <code>.html</code> entièrement autonome, sans aucune dépendance locale. Toutes les données sont embarquées en JSON directement dans le code JavaScript.</p>
+
+    <h3>2.2 Types de Données Supportés</h3>
+    <table>
+      <thead><tr><th>Domaine</th><th>Exemples de Données</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Financier / Comptable</strong></td><td>Bilan, compte de résultat, trésorerie, charges, produits</td></tr>
+        <tr><td><strong>Académique</strong></td><td>Notes, mentions, modules, filières, résultats d'examens</td></tr>
+        <tr><td><strong>Commercial / Ventes</strong></td><td>Commandes, clients, produits, régions, remises</td></tr>
+        <tr><td><strong>Logistique</strong></td><td>Stocks, fournisseurs, délais, livraisons, entrepôts</td></tr>
+        <tr><td><strong>Générique</strong></td><td>Toute donnée tabulaire structurée non catégorisée</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.3 Stack Technique</h3>
+    <ul>
+      <li><strong>Chart.js 4.x</strong> via CDN — pour tous les graphiques</li>
+      <li><strong>Vanilla JavaScript</strong> — sans framework pour la portabilité maximale</li>
+      <li><strong>CSS Grid / Flexbox</strong> — layout responsive et adaptatif</li>
+      <li><strong>HTML5</strong> — structure sémantique autonome</li>
+    </ul>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <h2>3. Workflow de Génération du Dashboard</h2>
+    <p>Le processus suit <strong>6 étapes séquentielles</strong> :</p>
+
+    <h3>Étape 1 — Lecture du Fichier Excel</h3>
+    <pre><code>pip install pandas openpyxl --break-system-packages -q
+
+import pandas as pd
+
+xl = pd.ExcelFile("/mnt/user-data/uploads/FICHIER.xlsx")
+sheets = xl.sheet_names
+
+df = pd.read_excel("/mnt/user-data/uploads/FICHIER.xlsx", sheet_name=0)
+print(df.dtypes)
+print(df.describe())
+print(df.head())</code></pre>
+
+    <h3>Étape 2 — Analyse de la Structure des Données</h3>
+    <table>
+      <thead><tr><th>Type de Colonne</th><th>Critère</th><th>Usage Dashboard</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Numérique</strong></td><td>dtype int / float</td><td>Barres, lignes, aires, KPI cards</td></tr>
+        <tr><td><strong>Catégorielle</strong></td><td>dtype object, cardinalité ≤ 20</td><td>Axes X, filtres, camemberts</td></tr>
+        <tr><td><strong>Date / Temps</strong></td><td>dtype datetime ou col. date/mois/année</td><td>Séries temporelles</td></tr>
+        <tr><td><strong>Texte libre</strong></td><td>dtype object, cardinalité &gt; 20</td><td>Labels uniquement, tableaux</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Détection automatique du mode :</h4>
+    <table>
+      <thead><tr><th>Mode</th><th>Mots-clés Détectés</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Académique</strong></td><td>note, mention, étudiant, module, filière, résultat, examen</td></tr>
+        <tr><td><strong>Financier</strong></td><td>CA, chiffre, revenu, montant, bilan, actif, passif, charges, trésorerie</td></tr>
+        <tr><td><strong>Commercial</strong></td><td>vente, commande, client, produit, quantité, remise, région</td></tr>
+        <tr><td><strong>Logistique</strong></td><td>stock, fournisseur, délai, livraison, référence, entrepôt</td></tr>
+        <tr><td><strong>Générique</strong></td><td>Aucun mot-clé reconnu — mode par défaut</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Étape 3 — Sélection des Graphiques</h3>
+    <p>Voir Section 4 pour le détail de l'algorithme.</p>
+
+    <h3>Étape 4 — Génération du HTML</h3>
+    <p>Structure obligatoire produite :</p>
+    <pre><code>dashboard.html
+├── &lt;header&gt;    — Titre + badge ENCG + date
+├── KPI Cards   — 4 à 6 métriques clés
+├── Charts Grid — 2 à 3 graphiques principaux
+├── Data Table  — Tableau paginé (10 lignes/page)
+└── &lt;footer&gt;    — Mention ENCG Settat</code></pre>
+
+    <h3>Étape 5 — Application du Branding ENCG</h3>
+    <p>Voir Section 5 pour le détail des spécifications.</p>
+
+    <h3>Étape 6 — Sauvegarde et Livraison</h3>
+    <pre><code>output_path = "/mnt/user-data/outputs/dashboard.html"
+with open(output_path, "w", encoding="utf-8") as f:
+    f.write(html_content)</code></pre>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <h2>4. Sélection des Graphiques et KPI</h2>
+
+    <h3>4.1 Algorithme de Sélection</h3>
+    <pre><code>1. Colonne date présente       → LineChart (temporel) en priorité
+2. Numérique vs Catégorielle   → BarChart horizontal ou vertical
+3. ≤ 7 catégories + 1 métrique → DoughnutChart
+4. ≥ 3 colonnes numériques     → RadarChart
+5. 2 colonnes numériques       → ScatterChart
+6. Toujours                    → 4 à 6 KPI Cards en haut de page
+7. Toujours                    → Tableau paginé en bas</code></pre>
+
+    <h3>4.2 KPI Cards par Mode de Données</h3>
+    <table>
+      <thead><tr><th>Mode</th><th>KPI 1</th><th>KPI 2</th><th>KPI 3</th><th>KPI 4</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Académique</strong></td><td>Total étudiants</td><td>Moyenne générale</td><td>Taux de réussite</td><td>Meilleure note</td></tr>
+        <tr><td><strong>Financier</strong></td><td>CA Total</td><td>Évolution vs N-1</td><td>Charges totales</td><td>Résultat net</td></tr>
+        <tr><td><strong>Commercial</strong></td><td>Total commandes</td><td>CA total</td><td>Panier moyen</td><td>Top produit</td></tr>
+        <tr><td><strong>Logistique</strong></td><td>Total références</td><td>Stock total</td><td>Ruptures</td><td>Valeur stock</td></tr>
+        <tr><td><strong>Générique</strong></td><td>Count total</td><td>Somme principale</td><td>Moyenne</td><td>Maximum</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <h2>5. Branding ENCG Settat</h2>
+    <p>Le branding ENCG est <strong>appliqué par défaut</strong> dans tous les dashboards, sauf demande explicite contraire.</p>
+
+    <h3>5.1 Variables CSS</h3>
+    <pre><code>:root {
+  --primary:    #006633;   /* Vert ENCG */
+  --secondary:  #D4A017;   /* Or ENCG */
+  --bg:         #f0f4f1;   /* Fond teinté vert */
+  --card-bg:    #ffffff;
+  --text:       #1a2e22;
+  --text-light: #5a7a65;
+  --border:     #d0e4d8;
+  --shadow:     0 2px 12px rgba(0,102,51,0.08);
+}</code></pre>
+
+    <h3>5.2 Spécifications du Header</h3>
+    <ul>
+      <li>Gradient de fond : <code>#006633</code> → <code>#004d26</code></li>
+      <li>Titre du dashboard + sous-titre ENCG Settat</li>
+      <li>Badge doré <code>#D4A017</code> indiquant le type de données</li>
+      <li>Police : <code>Segoe UI</code> / <code>system-ui</code></li>
+    </ul>
+
+    <h3>5.3 Adaptation par Type de Données</h3>
+    <table>
+      <thead><tr><th>Mode</th><th>Sous-titre Header</th><th>Badge</th></tr></thead>
+      <tbody>
+        <tr><td>Académique</td><td>ENCG Settat — Résultats Étudiants</td><td>Nom du module ou filière</td></tr>
+        <tr><td>Financier</td><td>ENCG Settat — Analyse Financière</td><td>Exercice ou période</td></tr>
+        <tr><td>Commercial</td><td>ENCG Settat — Performance Commerciale</td><td>Période ou région</td></tr>
+        <tr><td>Générique</td><td>ENCG Settat — Tableau de Bord</td><td>Nom du fichier source</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5.4 Exceptions de Branding</h3>
+    <table>
+      <thead><tr><th>Condition</th><th>Comportement</th></tr></thead>
+      <tbody>
+        <tr><td>Couleurs spécifiées par l'utilisateur</td><td>Utiliser les couleurs demandées</td></tr>
+        <tr><td>"sans branding ENCG"</td><td>Design neutre : bleu <code>#2563EB</code> / vert <code>#10B981</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <h2>6. Gestion des Cas Particuliers</h2>
+
+    <h3>6.1 Fichier Multi-Feuilles</h3>
+    <ul>
+      <li>Créer un système de navigation par <strong>onglets</strong> dans le dashboard</li>
+      <li>Ou interroger l'utilisateur sur la feuille à analyser en priorité</li>
+    </ul>
+
+    <h3>6.2 Données Manquantes</h3>
+    <ul>
+      <li>Ignorer les colonnes avec <strong>&gt; 50% de valeurs NaN</strong></li>
+      <li>Afficher un <strong>avertissement visible</strong> si des colonnes ont été exclues</li>
+      <li>Ne jamais générer d'erreur : utiliser <code>df.dropna()</code> ou <code>df.fillna(0)</code></li>
+    </ul>
+
+    <h3>6.3 Grands Volumes (&gt; 1 000 lignes)</h3>
+    <ul>
+      <li><strong>Agréger</strong> avant intégration JSON : <code>groupby</code> + <code>sum</code> / <code>mean</code></li>
+      <li>Limiter le tableau paginé à <strong>500 lignes maximum</strong></li>
+      <li>Afficher le total dans un KPI <em>"Total enregistrements"</em></li>
+    </ul>
+
+    <h3>6.4 Colonnes Dates Mal Formatées</h3>
+    <pre><code>for col in df.columns:
+    try:
+        df[col] = pd.to_datetime(df[col])
+    except:
+        pass</code></pre>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <h2>7. Checklist Qualité</h2>
+    <p>Avant toute livraison, vérifier systématiquement :</p>
+    <ul class="checklist">
+      <li>Le fichier HTML s'ouvre <strong>sans erreur</strong> dans un navigateur moderne</li>
+      <li>Tous les graphiques <strong>se chargent correctement</strong> (aucun canvas vide)</li>
+      <li>Les <strong>KPI Cards affichent des valeurs cohérentes</strong> avec les données source</li>
+      <li>Le <strong>tableau est lisible et paginé</strong> (10 lignes / page)</li>
+      <li>Le <strong>design est cohérent</strong> : couleurs, typographie, espacements</li>
+      <li>Le fichier est <strong>entièrement autonome</strong> (CDN uniquement, zéro dépendance locale)</li>
+      <li>Le <strong>titre reflète fidèlement</strong> le contenu du fichier source</li>
+    </ul>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="s8">
+    <h2>8. Exemples de Cas d'Usage</h2>
+
+    <h3>8.1 Dashboard Financier</h3>
+    <div class="blockquote">"Dashboard financier à partir de mon bilan Excel"<br>"Visualise mon compte de résultat"</div>
+    <p><strong>Graphiques générés :</strong> LineChart temporel, BarChart charges/produits, KPI résultat net, DoughnutChart répartition</p>
+
+    <h3>8.2 Dashboard Académique</h3>
+    <div class="blockquote">"Fais un tableau de bord pour mes résultats d'étudiants"<br>"Dashboard des notes du module M243"</div>
+    <p><strong>Graphiques générés :</strong> BarChart modules, DoughnutChart mentions, RadarChart compétences, KPI taux de réussite</p>
+
+    <h3>8.3 Dashboard Commercial</h3>
+    <div class="blockquote">"Dashboard des ventes du trimestre"<br>"Visualise mes données clients"</div>
+    <p><strong>Graphiques générés :</strong> BarChart ventes, DoughnutChart répartition produits, Top N clients</p>
+
+    <h3>8.4 Dashboard Générique</h3>
+    <div class="blockquote">"Montre-moi mes données sous forme visuelle"<br>"Résumé graphique de ce fichier"</div>
+    <p><strong>Graphiques générés :</strong> KPI count/sum/mean, BarChart principal, DoughnutChart répartition catégorielle</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="s9">
+    <h2>9. Conclusion</h2>
+    <p>Le skill <strong>Excel Dashboard</strong> constitue un outil puissant et polyvalent pour la transformation automatique de données Excel en visualisations interactives professionnelles. Ses atouts principaux sont :</p>
+    <ul>
+      <li>Une <strong>adaptabilité totale</strong> aux différents domaines de données</li>
+      <li>Un <strong>branding institutionnel cohérent</strong> aux couleurs ENCG Settat</li>
+      <li>Une <strong>autonomie complète</strong> du fichier livré, sans dépendances externes</li>
+      <li>Un <strong>workflow structuré en 6 étapes</strong> garantissant qualité et reproductibilité</li>
+    </ul>
+    <p>Ce skill s'inscrit pleinement dans la démarche de modernisation des outils d'analyse et de reporting portée par l'<strong>ENCG Settat — Université Hassan 1er</strong>.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <strong>ESSEDA MERIEM</strong> &nbsp;|&nbsp; ENCG Settat — Université Hassan 1er &nbsp;|&nbsp; Mars 2026
+  </div>
+
+</div>
+</body>
+</html>
